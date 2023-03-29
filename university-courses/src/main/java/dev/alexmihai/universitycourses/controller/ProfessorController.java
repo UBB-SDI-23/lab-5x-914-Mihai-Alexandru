@@ -65,7 +65,7 @@ public class ProfessorController {
         return ResponseEntity.ok(service.getProfsByNumStudsDesc());
     }
 
-    @PostMapping("{professorId}/courses")
+    @PostMapping("/{professorId}/courses")
     public ResponseEntity<Professor> addCourseListToProfessor(@PathVariable int professorId, @RequestBody List<CourseAssignProfessorPostDto> courses) throws EntityNotFoundException {
         return new ResponseEntity<>(service.addCourseListToProfessor(professorId, courses), HttpStatus.CREATED);
     }

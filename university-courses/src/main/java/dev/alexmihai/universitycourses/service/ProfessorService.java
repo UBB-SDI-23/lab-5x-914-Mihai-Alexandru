@@ -106,7 +106,10 @@ public class ProfessorService {
         }
 
         List<Course> mappedCourses = ObjectMapperUtils.mapAll(courses, Course.class);
-        professor.setCourses(mappedCourses);
+        for (Course course : mappedCourses) {
+            course.setProfessor(professor);
+            courseRepository.save(course);
+        }
 
         return professorRepository.save(professor);
     }
