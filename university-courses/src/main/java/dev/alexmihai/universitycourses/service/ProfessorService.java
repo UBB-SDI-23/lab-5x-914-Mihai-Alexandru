@@ -1,34 +1,41 @@
 package dev.alexmihai.universitycourses.service;
 
+import dev.alexmihai.universitycourses.dto.CourseAssignProfessorPostDto;
 import dev.alexmihai.universitycourses.dto.ProfessorGetAllDto;
 import dev.alexmihai.universitycourses.dto.ProfessorByNumStudsDto;
 import dev.alexmihai.universitycourses.dto.ProfessorRequest;
 import dev.alexmihai.universitycourses.exception.EntityNotFoundException;
+import dev.alexmihai.universitycourses.model.Course;
 import dev.alexmihai.universitycourses.model.Professor;
+import dev.alexmihai.universitycourses.repository.CourseRepository;
 import dev.alexmihai.universitycourses.repository.ProfessorRepository;
 import dev.alexmihai.universitycourses.utils.ObjectMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ProfessorService {
     @Autowired
-    private ProfessorRepository repository;
+    private ProfessorRepository professorRepository;
+
+    @Autowired
+    CourseRepository courseRepository;
 
     public Professor saveProfessor(ProfessorRequest professorRequest) {
         Professor professor = new Professor();
         ObjectMapperUtils.map(professorRequest, professor);  // map from professorRequest to professor (using ModelMapper)
-        return repository.save(professor);
+        return professorRepository.save(professor);
     }
 
     public List<Professor> saveProfessors(List<Professor> professors) {
-        return repository.saveAll(professors);
+        return professorRepository.saveAll(professors);
     }
 
     public List<ProfessorGetAllDto> getProfessors() throws EntityNotFoundException {
-        List<Professor> professors = repository.findAll();
+        List<Professor> professors = professorRepository.findAll();
         if (professors.isEmpty()) {
             throw new EntityNotFoundException("No professors found!");
         }
@@ -36,7 +43,7 @@ public class ProfessorService {
     }
 
     public Professor getProfessorById(int id) throws EntityNotFoundException {
-        Professor professor = repository.findById(id).orElse(null);
+        Professor professor = professorRepository.findById(id).orElse(null);
         if (professor == null) {
             throw new EntityNotFoundException(String.format("Professor with id %d does not exist!", id));
         }
@@ -44,7 +51,7 @@ public class ProfessorService {
     }
 
     public List<ProfessorGetAllDto> findBySalaryGreaterThan(int salary) throws EntityNotFoundException {
-        List<Professor> professors = repository.findBySalaryGreaterThan(salary);
+        List<Professor> professors = professorRepository.findBySalaryGreaterThan(salary);
         if (professors.isEmpty()) {
             throw new EntityNotFoundException(String.format("No professors with salary greater than %d found!", salary));
         }
@@ -52,15 +59,15 @@ public class ProfessorService {
     }
 
     public void deleteProfessor(int id) throws EntityNotFoundException {
-        Professor existingProfessor = repository.findById(id).orElse(null);
+        Professor existingProfessor = professorRepository.findById(id).orElse(null);
         if (existingProfessor == null) {
             throw new EntityNotFoundException(String.format("Professor with id %d does not exist!", id));
         }
-        repository.delete(existingProfessor);
+        professorRepository.delete(existingProfessor);
     }
 
     public Professor updateProfessor(int id, ProfessorRequest professorRequest) throws EntityNotFoundException {
-        Professor existingProfessor = repository.findById(id).orElse(null);
+        Professor existingProfessor = professorRepository.findById(id).orElse(null);
         if (existingProfessor == null) {
             throw new EntityNotFoundException(
                     String.format("Professor with id %d does not exist!", id));
@@ -70,14 +77,37 @@ public class ProfessorService {
         existingProfessor.setEmail(professorRequest.getEmail());
         existingProfessor.setPhone(professorRequest.getPhone());
         existingProfessor.setSalary(professorRequest.getSalary());
-        return repository.save(existingProfessor);
+        return professorRepository.save(existingProfessor);
     }
 
     public List<ProfessorByNumStudsDto> getProfsByNumStudsDesc() throws EntityNotFoundException {
-        List<ProfessorByNumStudsDto> professors = repository.findProfsByNumStudsDesc();
+        List<ProfessorByNumStudsDto> professors = professorRepository.findProfsByNumStudsDesc();
         if (professors.isEmpty()) {
             throw new EntityNotFoundException("No professors found!");
         }
         return professors;
+    }
+
+    // lab activity
+    public Professor addCourseListToProfessor(int professorId, List<CourseAssignProfessorPostDto> courses) throws EntityNotFoundException {
+        Professor professor = professorRepository.findById(professorId).orElse(null);
+        if (professor == null) {
+            throw new EntityNotFoundException(String.format("Professor with id %d does not exist!", professorId));
+        }
+
+        for (CourseAssignProfessorPostDto course : courses) {
+            if (course == null) {
+                throw new EntityNotFoundException("Course does not exist!");
+            }
+            Course existingCourse = courseRepository.findById(course.getId()).orElse(null);
+            if (existingCourse == null) {
+                throw new EntityNotFoundException(String.format("Course with id %d does not exist!", course.getId()));
+            }
+        }
+
+        List<Course> mappedCourses = ObjectMapperUtils.mapAll(courses, Course.class);
+        professor.setCourses(mappedCourses);
+
+        return professorRepository.save(professor);
     }
 }

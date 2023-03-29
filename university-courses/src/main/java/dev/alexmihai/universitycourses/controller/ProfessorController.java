@@ -1,5 +1,6 @@
 package dev.alexmihai.universitycourses.controller;
 
+import dev.alexmihai.universitycourses.dto.CourseAssignProfessorPostDto;
 import dev.alexmihai.universitycourses.dto.ProfessorGetAllDto;
 import dev.alexmihai.universitycourses.dto.ProfessorByNumStudsDto;
 import dev.alexmihai.universitycourses.dto.ProfessorRequest;
@@ -62,5 +63,10 @@ public class ProfessorController {
     @GetMapping("/stats-profs-by-num-studs-desc")
     public ResponseEntity<List<ProfessorByNumStudsDto>> getProfsByNumStudsDesc() throws EntityNotFoundException {
         return ResponseEntity.ok(service.getProfsByNumStudsDesc());
+    }
+
+    @PostMapping("{professorId}/courses")
+    public ResponseEntity<Professor> addCourseListToProfessor(@PathVariable int professorId, @RequestBody List<CourseAssignProfessorPostDto> courses) throws EntityNotFoundException {
+        return new ResponseEntity<>(service.addCourseListToProfessor(professorId, courses), HttpStatus.CREATED);
     }
 }
