@@ -23,8 +23,6 @@ public class StudentService {
     @Autowired
     private CourseRepository courseRepository;
 
-    // TODO: fix this method (do not allow user to add StudentCourse when adding a new Student,
-    //  instead allow user to add StudentCourse by using the StudentCourse endpoint)
     public Student saveStudent(StudentRequest studentRequest) {
         Student newStudent = new Student();
         newStudent.setFirstName(studentRequest.getFirstName());
@@ -32,30 +30,7 @@ public class StudentService {
         newStudent.setEmail(studentRequest.getEmail());
         newStudent.setPhone(studentRequest.getPhone());
         newStudent.setYearOfStudy(studentRequest.getYearOfStudy());
-
-        // The lines below are commented because StudentCourses will be added later on:
-        /*
-        newStudent.getStudentCourses().addAll((studentRequest.getStudentCourses().stream()
-                .map(studentCourse -> {
-                    Course course = courseRepository.findById(studentCourse.getCourse().getId()).orElse(null);
-                    if (course == null) {
-                        return null;
-                    }
-                    StudentCourse newStudentCourse = new StudentCourse();
-                    newStudentCourse.setCourse(course);
-                    newStudentCourse.setStudent(newStudent);
-                    newStudentCourse.setGrade(studentCourse.getGrade());
-                    newStudentCourse.setFeedback(studentCourse.getFeedback());
-                    return newStudentCourse;
-                })
-                .collect(Collectors.toList())));
-        */
-
         return studentRepository.save(newStudent);
-    }
-
-    public List<Student> saveStudents(List<Student> students) {
-        return studentRepository.saveAll(students);
     }
 
     public List<StudentGetAllDto> getStudents() throws EntityNotFoundException {

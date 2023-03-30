@@ -27,13 +27,6 @@ public class CourseController {
         return new ResponseEntity<>(service.saveCourse(courseRequest), HttpStatus.CREATED);
     }
 
-    // TODO: add validation for the list of courses + return ResponseEntity instead of List:
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/batch")
-    public List<Course> addCourses(@RequestBody List<Course> courses) {
-        return service.saveCourses(courses);
-    }
-
     @PostMapping("/{courseId}/students")
     public ResponseEntity<Course> addCourseStudent(@PathVariable int courseId, @RequestBody StudentCourse studentCourses) throws EntityNotFoundException {
         return new ResponseEntity<>(service.addCourseStudent(courseId, studentCourses), HttpStatus.CREATED);

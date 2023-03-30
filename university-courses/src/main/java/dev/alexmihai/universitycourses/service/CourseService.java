@@ -40,15 +40,7 @@ public class CourseService {
         newCourse.setStartDate(courseRequest.getStartDate());
         newCourse.setEndDate(courseRequest.getEndDate());
         newCourse.setProfessor(professor);
-
-        // The line below is commented because CourseStudents will be added later on:
-        // newCourse.setCourseStudents(courseRequest.getCourseStudents());
-
         return courseRepository.save(newCourse);
-    }
-
-    public List<Course> saveCourses(List<Course> courses) {
-        return courseRepository.saveAll(courses);
     }
 
     public List<CourseGetAllDto> getCourses() throws EntityNotFoundException {

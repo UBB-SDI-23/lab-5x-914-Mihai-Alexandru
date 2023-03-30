@@ -27,13 +27,6 @@ public class ProfessorController {
         return new ResponseEntity<>(service.saveProfessor(professorRequest), HttpStatus.CREATED);
     }
 
-    // TODO: add validation for the list of professors + return ResponseEntity instead of List:
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/batch")
-    public List<Professor> addProfessors(@RequestBody List<Professor> professors) {
-        return service.saveProfessors(professors);
-    }
-
     @GetMapping
     public ResponseEntity<List<ProfessorGetAllDto>> findAllProfessors() throws EntityNotFoundException {
         return ResponseEntity.ok(service.getProfessors());
@@ -65,6 +58,11 @@ public class ProfessorController {
         return ResponseEntity.ok(service.getProfsByNumStudsDesc());
     }
 
+    /*
+    Assign a list of existing courses to an existing professor.
+    If the courses are already assigned to another professor, they will be unassigned from that professor and
+    assigned to the given professor.
+     */
     @PostMapping("/{professorId}/courses")
     public ResponseEntity<Professor> addCourseListToProfessor(@PathVariable int professorId, @RequestBody List<CourseAssignProfessorPostDto> courses) throws EntityNotFoundException {
         return new ResponseEntity<>(service.addCourseListToProfessor(professorId, courses), HttpStatus.CREATED);

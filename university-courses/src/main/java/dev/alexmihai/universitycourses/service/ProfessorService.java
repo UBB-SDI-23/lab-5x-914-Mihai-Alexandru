@@ -13,7 +13,6 @@ import dev.alexmihai.universitycourses.utils.ObjectMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,10 +27,6 @@ public class ProfessorService {
         Professor professor = new Professor();
         ObjectMapperUtils.map(professorRequest, professor);  // map from professorRequest to professor (using ModelMapper)
         return professorRepository.save(professor);
-    }
-
-    public List<Professor> saveProfessors(List<Professor> professors) {
-        return professorRepository.saveAll(professors);
     }
 
     public List<ProfessorGetAllDto> getProfessors() throws EntityNotFoundException {
