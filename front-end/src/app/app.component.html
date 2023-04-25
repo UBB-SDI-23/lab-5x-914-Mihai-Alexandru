@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a routerLink="professors" routerLinkActive="active" class="nav-link"
+        >Professors List</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        routerLink="professor-filter-by-num-studs"
+        routerLinkActive="active"
+        class="nav-link"
+        >Professors Filtered</a
+      >
+    </li>
+  </ul>
+</nav>
+
+<h1 class="text-center">{{ title }}</h1>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+<!--
+<footer class="footer">
+  <div class="container">
+    <span>All rights reserved 2023 @AlexandruMihai</span>
+  </div>
+</footer>
+-->

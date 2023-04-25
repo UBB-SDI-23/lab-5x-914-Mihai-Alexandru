@@ -1,0 +1,21 @@
+<h3>View Professor Details</h3>
+<div class="container">
+  <div>
+    <label><b>First Name: </b></label> {{ professor.firstName }}
+  </div>
+  <div>
+    <label><b>Last Name: </b></label> {{ professor.lastName }}
+  </div>
+  <div>
+    <label><b>Email: </b></label> {{ professor.email }}
+  </div>
+  <div>
+    <label><b>Phone: </b></label> {{ professor.phone }}
+  </div>
+  <div>
+    <label><b>Salary: </b></label> {{ professor.salary }}
+  </div>
+  <button class="btn btn-secondary" type="button" (click)="goBack()">
+    Go back
+  </button>
+</div>

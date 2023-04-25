@@ -1,0 +1,69 @@
+<div class="col-md-6 offset-md-3">
+  <h3>Add professor</h3>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="firstName"
+        [(ngModel)]="professor.firstName"
+        name="firstName"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lastName"
+        [(ngModel)]="professor.lastName"
+        name="lastName"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        [(ngModel)]="professor.email"
+        name="email"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input
+        type="text"
+        class="form-control"
+        id="phone"
+        [(ngModel)]="professor.phone"
+        name="phone"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Salary</label>
+      <input
+        type="text"
+        class="form-control"
+        id="salary"
+        [(ngModel)]="professor.salary"
+        name="salary"
+      />
+    </div>
+
+    <button class="btn btn-success" type="submit">Submit</button>
+    <button
+      class="btn btn-secondary"
+      style="margin-left: 1rem"
+      type="button"
+      (click)="onCancel()"
+    >
+      Cancel
+    </button>
+  </form>
+</div>

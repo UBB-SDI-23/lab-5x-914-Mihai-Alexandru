@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(13, 110, 253);
+  color: rgb(247, 250, 255);
+  text-align: center;
+}

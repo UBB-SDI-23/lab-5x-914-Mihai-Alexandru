@@ -1,0 +1,55 @@
+<h2>Professors List</h2>
+<button (click)="createProfessor()" class="btn btn-primary">
+  Add Professor
+</button>
+<button
+  (click)="sortProfessorsByFirstLastName()"
+  class="btn btn-info"
+  style="margin-left: 1rem"
+>
+  Sort Professors by First and Last Name
+</button>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Salary</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let professor of professors; index as i">
+      <td>
+        <strong>{{ i + 1 }}</strong>
+      </td>
+      <td>{{ professor.firstName }}</td>
+      <td>{{ professor.lastName }}</td>
+      <td>{{ professor.email }}</td>
+      <td>{{ professor.phone }}</td>
+      <td>{{ professor.salary }}</td>
+      <td>
+        <button (click)="updateProfessor(professor.id)" class="btn btn-primary">
+          Update
+        </button>
+        <button
+          (click)="deleteProfessor(professor.id)"
+          class="btn btn-danger"
+          style="margin-left: 1rem"
+        >
+          Delete
+        </button>
+        <button
+          (click)="professorDetails(professor.id)"
+          class="btn btn-info"
+          style="margin-left: 1rem"
+        >
+          View
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
