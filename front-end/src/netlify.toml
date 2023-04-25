@@ -1,9 +1,0 @@
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/api/*"
-  to = "http://universitymanager-env.eba-hukn2v6m.eu-north-1.elasticbeanstalk.com/:splat"
-  status = 200
