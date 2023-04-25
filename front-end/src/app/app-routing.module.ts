@@ -16,15 +16,6 @@ const routes: Routes = [
     component: ProfessorFilterByNumStudsComponent,
   },
 
-  // TODO: check if this works:
-  {
-    path: '../api/*',
-    redirectTo:
-      'http://universitymanager-env.eba-hukn2v6m.eu-north-1.elasticbeanstalk.com/',
-    pathMatch: 'full',
-  },
-  // { path: '**', redirectTo: '/index.html', pathMatch: 'full' },
-
   // TODO: possibly add home page component and route:
   { path: '', redirectTo: 'professors', pathMatch: 'full' },
 ];
