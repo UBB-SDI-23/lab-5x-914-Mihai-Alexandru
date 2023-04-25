@@ -1,0 +1,2 @@
+/api/* http://universitymanager-env.eba-hukn2v6m.eu-north-1.elasticbeanstalk.com/:splat 200!
+/*    /index.html   200

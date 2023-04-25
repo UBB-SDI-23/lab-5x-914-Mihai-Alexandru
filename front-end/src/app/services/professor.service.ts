@@ -8,7 +8,7 @@ import { ProfessorByNumStudsDto } from '../dto/professor-by-num-studs-dto';
   providedIn: 'root',
 })
 export class ProfessorService {
-  private baseURL = 'http://localhost:8080/api/professors';
+  private baseURL = '../../api/professors';
 
   constructor(private httpClient: HttpClient) {}
 
