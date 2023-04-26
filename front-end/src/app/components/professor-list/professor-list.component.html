@@ -42,6 +42,10 @@
         >
           Delete
         </button>
+        <app-delete-confirmation-component
+          (confirmed)="onConfirmation($event)"
+          *ngIf="showConfirmation"
+        ></app-delete-confirmation-component>
         <button
           (click)="professorDetails(professor.id)"
           class="btn btn-info"

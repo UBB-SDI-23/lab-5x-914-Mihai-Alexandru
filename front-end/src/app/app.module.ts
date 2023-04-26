@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { ProfessorUpdateComponent } from './components/professor-update/professor-update.component';
 import { ProfessorDetailsComponent } from './components/professor-details/professor-details.component';
 import { ProfessorFilterByNumStudsComponent } from './components/professor-filter-by-num-studs/professor-filter-by-num-studs.component';
+import { DeleteConfirmationComponentComponent } from './components/delete-confirmation-component/delete-confirmation-component.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ProfessorFilterByNumStudsComponent } from './components/professor-filte
     ProfessorUpdateComponent,
     ProfessorDetailsComponent,
     ProfessorFilterByNumStudsComponent,
+    DeleteConfirmationComponentComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

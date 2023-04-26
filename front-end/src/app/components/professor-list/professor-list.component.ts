@@ -56,4 +56,18 @@ export class ProfessorListComponent {
   professorDetails(id: number) {
     this.router.navigate(['professor-details', id]);
   }
+
+  // LAB ACTIVITY:
+  showConfirmation = false;
+
+  deleteItem(): void {
+    this.showConfirmation = true;
+  }
+
+  onConfirmation(confirmed: boolean): void {
+    if (confirmed) {
+      // Perform the delete action
+    }
+    this.showConfirmation = false;
+  }
 }
