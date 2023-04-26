@@ -1,3 +1,5 @@
+import { Course } from './course';
+
 export class Professor {
   // ! used to indicate that the property will be initialized later on
   id!: number;
@@ -6,5 +8,7 @@ export class Professor {
   email!: string;
   phone!: string;
   salary!: number;
+
   // TODO: Add a property for courses list
+  courses?: Course[];
 }

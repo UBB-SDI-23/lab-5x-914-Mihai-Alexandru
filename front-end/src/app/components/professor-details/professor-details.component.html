@@ -15,6 +15,13 @@
   <div>
     <label><b>Salary: </b></label> {{ professor.salary }}
   </div>
+  <div>
+    <select>
+      <option *ngFor="let course of professor.courses">
+        {{ course.title }}
+      </option>
+    </select>
+  </div>
   <button class="btn btn-secondary" type="button" (click)="goBack()">
     Go back
   </button>
