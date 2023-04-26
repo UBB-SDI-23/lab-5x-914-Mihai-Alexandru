@@ -35,6 +35,13 @@ export class ProfessorService {
   }
 
   deleteProfessor(id: number): Observable<Object> {
-    return this.httpClient.delete(`${this.baseURL}/${id}`);
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this item?'
+    );
+    if (confirmed) {
+      // Perform the delete action
+      return this.httpClient.delete(`${this.baseURL}/${id}`);
+    }
+    return new Observable();
   }
 }
