@@ -9,7 +9,7 @@ import { ProfessorByNumStudsDto } from '../dto/professor-by-num-studs-dto';
 })
 export class ProfessorService {
   private baseURL =
-    'https://universitymanager-env.eba-hukn2v6m.eu-north-1.elasticbeanstalk.com/api/professors';
+    'http://universitymanager-env.eba-hukn2v6m.eu-north-1.elasticbeanstalk.com/api/professors';
 
   constructor(private httpClient: HttpClient) {}
 
