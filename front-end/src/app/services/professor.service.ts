@@ -8,8 +8,7 @@ import { ProfessorByNumStudsDto } from '../dto/professor-by-num-studs-dto';
   providedIn: 'root',
 })
 export class ProfessorService {
-  private baseURL =
-    'http://universitymanager-env.eba-hukn2v6m.eu-north-1.elasticbeanstalk.com/api/professors';
+  private baseURL = '../api/professors';
 
   constructor(private httpClient: HttpClient) {}
 
