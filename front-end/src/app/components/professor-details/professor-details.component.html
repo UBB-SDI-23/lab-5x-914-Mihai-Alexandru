@@ -16,7 +16,8 @@
     <label><b>Salary: </b></label> {{ professor.salary }}
   </div>
   <div>
-    <select>
+    <label><b>Courses: </b></label>
+    <select class="form-select">
       <option *ngFor="let course of professor.courses">
         {{ course.title }}
       </option>
